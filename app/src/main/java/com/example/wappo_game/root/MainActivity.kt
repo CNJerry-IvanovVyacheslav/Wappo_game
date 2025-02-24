@@ -1,6 +1,5 @@
-package com.example.wappo_game
+package com.example.wappo_game.root
 
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,13 +23,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.res.ResourcesCompat.ThemeCompat
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.example.wappo_game.R
+import com.example.wappo_game.settings.Settings
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,35 +123,6 @@ fun Select_level() {
 @Composable
 fun Make_custom_level() {
     Text("Make custom level", fontSize = 30.sp)
-}
-
-@Composable
-fun Settings() {
-    Text("Settings", fontSize = 30.sp)
-    Box {
-        val checkedState = remember { mutableStateOf(false) }
-        val textColor = remember { mutableStateOf(Color.Unspecified) }
-        Column {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    "Темная тема",
-                    fontSize = 22.sp,
-                    color = textColor.value,
-                    modifier = Modifier.padding(8.dp, 100.dp)
-                )
-                Switch(
-                    checked = checkedState.value,
-                    onCheckedChange = {
-                        checkedState.value = it
-                        if (checkedState.value) {
-                            TODO("Make switch theme")
-                            textColor.value = Color(0xFF6650a4)
-                        } else textColor.value = Color.Unspecified
-                    }
-                )
-            }
-        }
-    }
 }
 
 sealed class NavRoutes(val route: String) {
